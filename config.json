@@ -1,0 +1,229 @@
+{
+    "project": {
+        "name": "Passio",
+        "fullName": "Ecomobi Passio App",
+        "version": "3.2.3+654",
+        "description": "Ứng dụng Passio của Ecomobi - nền tảng affiliate marketing và quản lý chiến dịch",
+        "homepage": "https://passio.eco",
+        "type": "mobile_app",
+        "framework": "Flutter"
+    },
+    "technical": {
+        "language": "Dart",
+        "sdk": "^3.5.4",
+        "framework": "Flutter",
+        "stateManagement": "flutter_bloc",
+        "routing": "go_router",
+        "database": "Hive",
+        "networking": "Dio",
+        "firebase": {
+            "enabled": true,
+            "services": [
+                "firebase_auth",
+                "firebase_messaging",
+                "firebase_crashlytics",
+                "firebase_analytics",
+                "firebase_remote_config",
+                "firebase_storage"
+            ]
+        }
+    },
+    "architecture": {
+        "pattern": "Feature-based Clean Architecture",
+        "description": "Dự án được tổ chức theo kiến trúc phân tầng với infrastructure package riêng biệt và features module",
+        "layers": {
+            "infrastructure": {
+                "path": "./infrastructure",
+                "description": "Package chứa các service core, utilities, và dependencies chung",
+                "responsibilities": [
+                    "Routing và navigation (go_router)",
+                    "State management (flutter_bloc)",
+                    "Local storage (Hive)",
+                    "Network layer (Dio)",
+                    "Firebase integration",
+                    "Analytics và tracking (AppsFlyer)",
+                    "Localization",
+                    "Theme management"
+                ]
+            },
+            "presentation": {
+                "path": "./lib/src",
+                "description": "Layer chứa UI, business logic và features",
+                "structure": {
+                    "features": "Các module chức năng độc lập",
+                    "common": "Shared components, widgets, utilities",
+                    "listeners": "Event listeners và observers"
+                }
+            }
+        }
+    },
+    "features": {
+        "description": "Dự án bao gồm 25+ features modules độc lập",
+        "modules": [
+            {
+                "name": "auth",
+                "description": "Xác thực người dùng (Google, Apple Sign-in)"
+            },
+            {
+                "name": "home",
+                "description": "Trang chủ và dashboard"
+            },
+            {
+                "name": "affiliate_v3",
+                "description": "Quản lý affiliate marketing"
+            },
+            {
+                "name": "campaign",
+                "description": "Quản lý chiến dịch marketing"
+            },
+            {
+                "name": "gen_link",
+                "description": "Tạo và quản lý affiliate links"
+            },
+            {
+                "name": "tap",
+                "description": "Theo dõi và phân tích tap/click"
+            },
+            {
+                "name": "report",
+                "description": "Báo cáo và thống kê"
+            },
+            {
+                "name": "payment",
+                "description": "Quản lý thanh toán"
+            },
+            {
+                "name": "notification",
+                "description": "Thông báo push và in-app"
+            },
+            {
+                "name": "chatting",
+                "description": "Tính năng chat và messaging"
+            },
+            {
+                "name": "ai_content",
+                "description": "Tạo nội dung bằng AI"
+            },
+            {
+                "name": "assistant",
+                "description": "Trợ lý AI"
+            },
+            {
+                "name": "menu",
+                "description": "Menu và navigation"
+            },
+            {
+                "name": "account_manager",
+                "description": "Quản lý tài khoản"
+            },
+            {
+                "name": "channel_link",
+                "description": "Quản lý channel links"
+            },
+            {
+                "name": "dynamic_feed",
+                "description": "Dynamic content feed"
+            },
+            {
+                "name": "my_request",
+                "description": "Quản lý yêu cầu của người dùng"
+            },
+            {
+                "name": "traffic_sources",
+                "description": "Quản lý nguồn traffic"
+            }
+        ]
+    },
+    "keyDependencies": {
+        "stateManagement": "flutter_bloc ^8.1.6",
+        "routing": "go_router ^14.4.1",
+        "networking": "dio ^5.7.0",
+        "localStorage": "hive ^2.2.3",
+        "authentication": [
+            "firebase_auth ^5.5.2",
+            "google_sign_in ^6.2.2",
+            "sign_in_with_apple ^7.0.0"
+        ],
+        "ui": [
+            "flutter_screenutil",
+            "shimmer ^3.0.0",
+            "lottie ^3.2.0",
+            "carousel_slider ^5.0.0",
+            "table_calendar ^3.1.2"
+        ],
+        "utilities": [
+            "intl",
+            "jiffy ^6.3.2",
+            "uuid ^4.5.1",
+            "path_provider"
+        ]
+    },
+    "platforms": {
+        "supported": [
+            "Android",
+            "iOS"
+        ],
+        "minSdkAndroid": 21
+    },
+    "buildConfiguration": {
+        "environments": [
+            "dev",
+            "prod"
+        ],
+        "launcherIcons": {
+            "dev": "flutter_launcher_icons-dev.yaml",
+            "prod": "flutter_launcher_icons-prod.yaml"
+        },
+        "splash": "flutter_native_splash.yaml"
+    },
+    "assets": {
+        "fonts": [
+            "Helvetica",
+            "Nunito",
+            "Roboto",
+            "Pacifico",
+            "SourceCodePro",
+            "AppIcons",
+            "Linearicons",
+            "PassioApp"
+        ],
+        "images": [
+            "launch_icons",
+            "gen_link",
+            "affiliate_v3",
+            "campaign",
+            "report",
+            "notification",
+            "auth",
+            "menu",
+            "chat",
+            "ai_content",
+            "dynamic_feed"
+        ],
+        "colors": [
+            "v1",
+            "gen_link",
+            "report",
+            "campaign",
+            "channel_link",
+            "tap",
+            "home",
+            "menu",
+            "notification",
+            "auth",
+            "ai_content"
+        ]
+    },
+    "cicd": {
+        "platform": "Bitbucket Pipelines",
+        "config": "bitbucket-pipelines.yml"
+    },
+    "codeGeneration": {
+        "flutter_gen": {
+            "output": "infrastructure/lib/src/assets/",
+            "integrations": [
+                "flutter_svg"
+            ]
+        }
+    }
+}
